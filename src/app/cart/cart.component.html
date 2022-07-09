@@ -1,0 +1,52 @@
+<app-header></app-header>
+
+<section class="cart_section">
+   <div class="container">
+       <h2>Cart</h2>
+
+       <!-- if condition start -->
+       <div *ngIf="getCartDetails">
+         
+    <table>
+        <tr>
+          <th>Image</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Sub Total</th>
+          <th>Remove Item</th>
+        </tr>
+
+        <!-- cart products row start -->
+        <!-- for of loop is we can get all obj property and obj values -->
+        <tr *ngFor="let getCartinfo of getCartDetails" >
+          <td><img src="{{getCartinfo.img}}" alt="p1" width="200px"></td>
+          <td>₹ {{getCartinfo.amt}}</td>
+          <td>
+            <div class="content">
+                <button type="button" class="btn" (click)="incQnt(getCartinfo.prodId, getCartinfo.qnt)"><i class="fa fa-plus"></i></button>
+                <span>{{getCartinfo.qnt}}</span>
+                <button type="button" class="btn" (click)="decQnt(getCartinfo.prodId, getCartinfo.qnt)"><i class="fa fa-minus"></i></button>
+            </div>
+          </td>
+          <td>₹ {{getCartinfo.amt * getCartinfo.qnt}}</td>
+          <td><i class="fa fa-trash" id="trash1" 
+            (click)="singleDelete(getCartinfo.prodId)"></i></td>
+       
+        </tr>
+       <!-- cart products row end --> 
+      </table>
+      <div class="row">
+        <div class="col-md-6 pt-2">
+          <h2>Total - ₹ {{total}}</h2>
+        </div>
+        <div class="col-md-6 text-right pt-2">
+          <button type="button" id="btn2">&nbsp;<i id="trash" class="fa fa-trash"
+            (click)="removeall()">&nbsp;Remove All Items</i></button>
+        </div>
+      </div>
+
+    </div>
+      <!-- if condition end -->
+   </div>
+   
+</section>
